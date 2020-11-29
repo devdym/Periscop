@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<h1>Digest</h1>
+<form method="POST">
+  {{ form.hidden_tag() }} {{ form.seal_logs() }}
+  <br />
+  {{ form.gunlink_logs() }}
+  <br />
+  {{ form.tension_logs() }}
+</form>
+
+{% endblock %}

@@ -1,0 +1,187 @@
+@font-face {
+  font-family: "Roboto Mono", monospace;
+  src: url(../static/fonts/RobotoMono-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto Mono", monospace;
+  src: url(../static/fonts/RobotoMono-Italic-VariableFont_wght.ttf)
+    format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Stencil", monospace;
+  src: url(../static/fonts/BigShouldersStencilDisplay-ExtraBold.ttf) format("truetype");
+}
+
+.body {
+  color: #747474;
+  font-family: "Roboto Mono", monospace;
+}
+
+.logo {
+  color: #272727;
+  margin-left: 5px;
+  font-size: 25px;
+  font-family: "Stencil", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.logo2 {
+  color: #ff652f;
+  margin-top: -90px;
+  font-weight: 700;
+  font-size: 25px;
+  font-family: "Stencil", monospace;
+  font-style: bold;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 2;
+  width: 80px;
+  height: 100%;
+  background-color: #747474;
+  border-right: #14a76c 3px solid;
+
+}
+
+.sidebar-sticky {
+  position: relative;
+  z-index: 2;
+  top: 0;
+  height: 100%;
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #747474;
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar .nav-link {
+  /* font-weight: 500; */
+  color: #272727;
+  font-family: "Stencil", monospace;
+}
+
+.mainwin {
+  margin-left: 55px;
+}
+
+.controlbar {
+  position: fixed;
+  z-index: 2;
+  width: 200px;
+  height: 100%;
+  /* margin-left: 50px; */
+  color: #747474;
+  background-color: #272727;
+  border-right: #14a76c 3px solid;
+  font-family: "Roboto Mono", monospace;
+}
+
+.form-group {
+  width: 150px;
+}
+
+.controlbar-stiky {
+  position: relative;
+  z-index: 2;
+  top: 0;о
+  height: 100%;
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #272727;
+}
+
+.dash {
+  margin-left: 200px;
+  width: 100%;
+  color: #747474;
+  background-color: #272727;
+  font-family: "Roboto Mono", monospace;
+}
+
+.dashboard {
+  /* margin-left: 80px; */
+  width: 100%;
+  color: #747474;
+  background-color: #272727;
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 12%;
+  padding: 0 5px;
+}
+
+/* Float four columns side by side */
+.column_instest {
+  float: left;
+  width: 23%;
+  padding: 0 5px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 #ffe60059; /* this adds the "card" effect */
+  /* padding: 16px; */
+  text-align: center;
+  /* background-color: #747474; */
+  font-family: "Roboto Mono", monospace;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.table thead th {
+  border-top: 2px solid#8a8989 !important;
+  border-bottom: 2px solid#8a8989 !important;
+  border-right: 2px solid #8a8989;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 100;
+}
+
+.table {
+  border-left: 2px solid #8a8989 !important;
+  border-bottom: 2px solid #8a8989 !important;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 100;
+}
+
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 2px 0px; 
+}
+
+th.dt-center, td.dt-center { text-align: center; }

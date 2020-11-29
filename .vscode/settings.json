@@ -1,0 +1,37 @@
+{
+  "deploy": {
+    "targets": [
+      {
+        "type": "local",
+        "name": "WSL",
+        "description": "A WSL shared network folder",
+        "dir": "Z:\\home\\dym\\airflow"
+      },
+      {
+        "type": "sftp",
+        "name": "DAGs",
+        "host": "10.103.1.30",
+        "port": 22,
+        "user": "user",
+        "password": "Observer.bhp",
+        "description": "Barbaros's Ubuntu server",
+        "dir": "/home/user/airflow"
+      },
+      {
+        "type": "sftp",
+        "name": "SeisLog",
+        "host": "10.103.1.30",
+        "port": 22,
+        "user": "user",
+        "password": "Observer.bhp",
+        "description": "Barbaros's Ubuntu server",
+        "dir": "/home/user/Periscope"
+      }
+    ]
+  },
+
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintUseMinimalCheckers": false
+}

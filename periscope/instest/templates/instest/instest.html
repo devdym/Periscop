@@ -1,0 +1,194 @@
+{% extends "base.html" %} {% block content %}
+
+<script type="text/javascript" src="../../../static/instest.js"></script>
+<script type="text/javascript">
+  var out_section = {{ cap_out2 }}
+</script>
+<div class="row">
+  <div class="controlbar col-2">
+    <div class="controlbar-sticky">
+      <h3>Ins test</h3>
+      <form method="POST">
+        {{ form.hidden_tag() }} {{ form.date_.label }} {{ form.date_ }}
+        <br />
+        {{ form.submit() }}
+      </form>
+    </div>
+  </div>
+
+  <div class="col-10 dash">
+    <h3>Dashboard</h3>
+    <div class="row">
+      <!-- Str1 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 1</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 1 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Str2 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 2</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 2 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Str3 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 3</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 3 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Str4 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 4</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 4 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Str5 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 5</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 5 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Str6 stats card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">Str 6</div>
+          <div class="card-body">
+            {% if out_of_limit %} {% for i in out_of_limit %} {% if i[2] == 6 %}
+            <p>{{ i[1] }}</p>
+            {% endif %} {% endfor %} {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3>Limits</h3>
+    <div class="row">
+      <!-- Cap Limits card-->
+      <div class="column_instest">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 20rem">
+          <div class="card-header">Cap Limits</div>
+          <div class="card-body">
+            {% if testlim %}
+            <p>S2 min {{ testlim[0][1] }} max {{ testlim[0][2] }} nF</p>
+            <p>S3 min {{ testlim[1][1] }} max {{ testlim[1][2] }} nF</p>
+            <p>S4 min {{ testlim[2][1] }} max {{ testlim[2][2] }} nF</p>
+            <p>S5 min {{ testlim[3][1] }} max {{ testlim[3][2] }} nF</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Cutoff Limits card-->
+      <div class="column_instest">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 20rem">
+          <div class="card-header">Cut off Limits</div>
+          <div class="card-body">
+            {% if testlim %}
+            <p>S2 min {{ testlim[0][3] }} max {{ testlim[0][4] }} Hz</p>
+            <p>S3 min {{ testlim[1][3] }} max {{ testlim[1][4] }} Hz</p>
+            <p>S4 min {{ testlim[2][3] }} max {{ testlim[2][4] }} Hz</p>
+            <p>S5 min {{ testlim[3][3] }} max {{ testlim[3][4] }} Hz</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Noise Limits card-->
+      <div class="column_instest">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 20rem">
+          <div class="card-header">Noise Limits</div>
+          <div class="card-body">
+            {% if testlim %}
+            <p>S2 max {{ testlim[0][6] }} uB</p>
+            <p>S3 max {{ testlim[1][6] }} uB</p>
+            <p>S4 max {{ testlim[2][6] }} uB</p>
+            <p>S5 max {{ testlim[3][6] }} uB</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Leakage Limits card-->
+      <div class="column_instest">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 20rem">
+          <div class="card-header">Leakage Limits</div>
+          <div class="card-body">
+            {% if testlim %}
+            <p>S2 max {{ testlim[0][5] }} MO</p>
+            <p>S3 max {{ testlim[1][5] }} MO</p>
+            <p>S4 max {{ testlim[2][5] }} MO</p>
+            <p>S5 max {{ testlim[3][5] }} MO</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Table</h3>
+    <h4>Sections</h4>
+    <table
+      id="test_table"
+      class="table compact table-dark table-bordered table-hover pr-4"
+      style="width: 100%"
+    >
+      <thead>
+        <tr>
+          <th>Section Nb</th>
+          <th>Trace Nb</th>
+          <th>Str 1</th>
+          <th>Str 2</th>
+          <th>Str 3</th>
+          <th>Str 4</th>
+          <th>Str 5</th>
+          <th>Str 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in test %}
+        <tr>
+          <td>{{r[0]}}</td>
+          <td>{{r[1]}}</td>
+          <td>{{r[2]}}</td>
+          <td>{{r[3]}}</td>
+          <td>{{r[4]}}</td>
+          <td>{{r[5]}}</td>
+          <td>{{r[6]}}</td>
+          <td>{{r[7]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

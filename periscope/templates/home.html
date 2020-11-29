@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+  <div class="col-12 dashboard">
+    <h3>Dashboard</h3>
+    <div class="row">
+      <!-- Str Tension card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">
+            <a href="{{ url_for('tension.tension') }}" class="badge badge-dark">
+              Str Tension
+            </a>
+          </div>
+          <div class="card-body">
+            <p>Str 1: {{ tension[0][0] }}</p>
+            <p>Str 2: {{ tension[1][0] }}</p>
+            <p>Str 3: {{ tension[2][0] }}</p>
+            <p>Str 4: {{ tension[3][0] }}</p>
+            <p>Str 5: {{ tension[4][0] }}</p>
+            <p>Str 6: {{ tension[5][0] }}</p>
+            last updated @ {{ tension_last_date }}
+          </div>
+        </div>
+      </div>
+      <!-- Str Ins Test Results card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">
+            <a href="{{ url_for('instest.instest') }}" class="badge badge-dark">
+              Str Ins Test Result
+            </a>
+          </div>
+          <div class="card-body">
+            <p>Str 1: {{ out_of_limit[0] }}</p>
+            <p>Str 2: {{ out_of_limit[1] }}</p>
+            <p>Str 3: {{ out_of_limit[2] }}</p>
+            <p>Str 4: {{ out_of_limit[3] }}</p>
+            <p>Str 5: {{ out_of_limit[4] }}</p>
+            <p>Str 6: {{ out_of_limit[5] }}</p>
+            <p>Total: {{ all_err }}</p>
+            <p>last updated @ {{ upd_date }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Str Ins Test Results card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">
+            <a
+              href="{{ url_for('batteries.batteries') }}"
+              class="badge badge-dark"
+            >
+              Atached Units
+            </a>
+          </div>
+          <div class="card-body">
+            <p>Str 1</p>
+            <p>Str 2</p>
+            <p>Str 3</p>
+            <p>Str 4</p>
+            <p>Str 5</p>
+            <p>Str 6</p>
+          </div>
+        </div>
+      </div>
+      <!-- Str ballasting card -->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 20rem">
+          <div class="card-header">
+            <a
+              href="{{ url_for('ballasting.ballasting') }}"
+              class="badge badge-dark"
+            >
+              Ballasting
+            </a>
+          </div>
+          <div class="card-body">
+            <p>Str 1</p>
+            <p>Str 2</p>
+            <p>Str 3</p>
+            <p>Str 4</p>
+            <p>Str 5</p>
+            <p>Str 6</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,400 @@
+{% extends "base.html" %} {% block content %}
+
+<script
+  type="text/javascript"
+  src="../../../static/batteries_table.js"
+></script>
+<script type="text/javascript">
+  var banka = {{ form.min_v_bank_a.data }}
+  var bankb = {{ form.min_v_bank_b.data }}
+</script>
+
+<div class="row">
+  <div class="controlbar col-2">
+    <div class="controlbar-sticky">
+      <h3>Batteries limits</h3>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.dt.label }} {{ form.dt(class='datepicker', size=15) }}
+        </div>
+        <div class="form-group">
+          {{ form.min_v_bank_a.label }} {{ form.min_v_bank_a(size=10) }}
+        </div>
+        <div class="form-group">
+          {{ form.min_v_bank_b.label }} {{ form.min_v_bank_b(size=10) }}
+        </div>
+        {{ form.submit() }}
+      </form>
+    </div>
+  </div>
+  <div class="col-10 dash">
+    <h3>Dashboard</h3>
+
+    <div class="row">
+      <!-- S1 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str1 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds'] %} {% if c[0] == 1 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins'] %} {% if c[0]
+            == 1 %}
+            <p>F{{c[1]}}</p>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- S2 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str2 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds'] %} {% if c[0] == 2 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins'] %} {% if c[0]
+            == 2 %}
+            <p>F{{c[1]}}</p>
+            {% endif%} {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <!-- S3 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str3 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds']%} {% if c[0] == 3 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins']%} {% if c[0]
+            == 3 %}
+            <p>F{{c[1]}}</p>
+            {% endif%} {% endfor%}
+          </div>
+        </div>
+      </div>
+
+      <!-- S4 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str4 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds']%} {% if c[0] == 4 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins']%} {% if c[0]
+            == 4 %}
+            <p>F{{c[1]}}</p>
+            {% endif%} {% endfor%}
+          </div>
+        </div>
+      </div>
+
+      <!-- S5 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str5 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds']%} {% if c[0] == 5 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins']%} {% if c[0]
+            == 5 %}
+            <p>F{{c[1]}}</p>
+            {% endif%} {% endfor%}
+          </div>
+        </div>
+      </div>
+
+      <!-- S6 Stats-->
+      <div class="column">
+        <div class="card bg-dark border-danger mb-3" style="max-width: 10rem">
+          <div class="card-header">Str6 Stats</div>
+          <div class="card-body">
+            {% for c in birds_wb['wb_birds']%} {% if c[0] == 6 %}
+            <p>C{{c[1]}}</p>
+            {% endif%} {% endfor%} {% for c in birds_wb['wb_fins']%} {% if c[0]
+            == 6 %}
+            <p>F{{c[1]}}</p>
+            {% endif%} {% endfor%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Birds card-->
+      <div class="column">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 10rem">
+          <div class="card-header">Bird's Stats</div>
+          <div class="card-body">
+            <p>Out of range: {{birds_data['birds_out']}}</p>
+            <p>Bank A: {{birds_data['birds_a']}}</p>
+            <p>Bank B: {{birds_data['birds_b']}}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fins card-->
+      <div class="column">
+        <div class="card bg-dark border-warning mb-3" style="max-width: 10rem">
+          <div class="card-header">Fin's Stats</div>
+          <div class="card-body">
+            <p>Out of range: {{fins_data['fins_out']}}</p>
+            <p>Bank A: {{fins_data['fins_a']}}</p>
+            <p>Bank B: {{fins_data['fins_b']}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Table</h3>
+    <h4>Digi Birds</h4>
+    <div class="row">
+      <table
+        id="birds_table"
+        class="table table-dark table-borderless table-hover pr-4"
+      >
+        <thead class="thead-dark">
+          <tr>
+            <th rowspan="2">Unit Nb</th>
+            <th colspan="3">Streamer 1</th>
+            <th colspan="3">Streamer 2</th>
+            <th colspan="3">Streamer 3</th>
+            <th colspan="3">Streamer 4</th>
+            <th colspan="3">Streamer 5</th>
+            <th colspan="3">Streamer 6</th>
+          </tr>
+          <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in result %}
+          <tr>
+            <!-- unit nb -->
+            <td style="border-right: 2px solid#8a8989 !important">
+              {{r[0][1]}}
+            </td>
+            <!-- str1 -->
+            <td>{{r[0][2]}}</td>
+            <td style="border-right: 2px solid#8a8989 !important">
+              {{r[0][3]}}
+            </td>
+            <td>{{r[0][4]}}</td>
+            <!-- str2 -->
+            <td>{{r[1][2]}}</td>
+            <td style="border-right: 2px solid#8a8989 !important">
+              {{r[1][3]}}
+            </td>
+            <td>{{r[1][4]}}</td>
+            <!-- str3 -->
+            <td>{{r[2][2]}}</td>
+            <td style="border-right: 2px solid#8a8989 !important">
+              {{r[2][3]}}
+            </td>
+            <td>{{r[2][4]}}</td>
+            <!-- str4 -->
+            <td>{{r[3][2]}}</td>
+            <td style="border-right: 2px solid#8a8989 !important">
+              {{r[3][3]}}
+            </td>
+            <td>{{r[3][4]}}</td>
+            <!-- str5 -->
+            <td>{{r[4][2]}}</td>
+            <td style="border-right: 1px solid#8a8989 !important">
+              {{r[4][3]}}
+            </td>
+            <td>{{r[4][4]}}</td>
+            <!-- str6 -->
+            <td>{{r[5][2]}}</td>
+            <td style="border-right: 1px solid#8a8989 !important">
+              {{r[5][3]}}
+            </td>
+            <td>{{r[5][4]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <table
+        id="birds_table_sn"
+        class="table cell-border compact table-bordered table-hover table-dark"
+      >
+        <thead>
+          <tr>
+            <th>Streamer</th>
+            <th>Unit</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active Bank</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ba in batt %}
+          <tr>
+            <td>{{ba.streamer_number}}</td>
+            <td>{{ba.unit_number}}</td>
+            <td>{{ba.bank_a}}</td>
+            <td>{{ba.bank_b}}</td>
+            <td>{{ba.active_bank}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Digi Fins</h4>
+    <div class="row">
+      <table
+        id="fins_table"
+        class="table table-dark table-borderless table-hover compact pr-4"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th rowspan="2">Unit Nb</th>
+            <th colspan="3">Str 1</th>
+            <th colspan="3">Str 2</th>
+            <th colspan="3">Str 3</th>
+            <th colspan="3">Str 4</th>
+            <th colspan="3">Str 5</th>
+            <th colspan="3">Str 6</th>
+          </tr>
+          <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in result_f %}
+          <tr>
+            <!-- unit nb -->
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[0][1]}}
+            </td>
+            <!-- str1 -->
+            <td>{{r[0][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[0][3]}}
+            </td>
+            <td>{{r[0][4]}}</td>
+            <!-- str2 -->
+            <td>{{r[1][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[1][3]}}
+            </td>
+            <td>{{r[1][4]}}</td>
+            <!-- str3 -->
+            <td>{{r[2][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[2][3]}}
+            </td>
+            <td>{{r[2][4]}}</td>
+            <!-- str4 -->
+            <td>{{r[3][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[3][3]}}
+            </td>
+            <td>{{r[3][4]}}</td>
+            <!-- str5 -->
+            <td>{{r[4][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[4][3]}}
+            </td>
+            <td>{{r[4][4]}}</td>
+            <!-- str6 -->
+            <td>{{r[5][2]}}</td>
+            <td style="border-right: 1px solid#4d4c4c !important">
+              {{r[5][3]}}
+            </td>
+            <td>{{r[5][4]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <table
+        id="fins_table_sn"
+        class="table table-dark table-bordered table-hover cell-border compact"
+        style="width: 100%"
+      >
+        <thead>
+          <tr>
+            <th>Streamer</th>
+            <th>Unit</th>
+            <th>A</th>
+            <th>B</th>
+            <th>Active Bank</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ba in batt_f %}
+          <tr>
+            <td>{{ba.streamer_number}}</td>
+            <td>{{ba.unit_number}}</td>
+            <td>{{ba.bank_a}}</td>
+            <td>{{ba.bank_b}}</td>
+            <td>{{ba.active_bank}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Accoustics</h4>
+    <table id="acc_table" class="table cell-border compact" style="width: 100%">
+      <thead>
+        <tr>
+          <th>Streamer</th>
+          <th>Unit</th>
+          <th>Volts</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ba in batt %}
+        <tr>
+          <td>{{ba.streamer_number}}</td>
+          <td>{{ba.unit_number}}</td>
+          <td>{{ba.bank_a}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
