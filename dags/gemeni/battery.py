@@ -1,9 +1,7 @@
 # import paramiko
 from airflow.models import Variable
-import os, shutil
+import os
 import logging
-from pathlib import Path
-import ftplib
 import pathlib
 import datetime as dt
 
@@ -24,30 +22,73 @@ def connect_to_server(**kwargs):
 def read_source_folder(**kwargs):
     source = Variable.get("DigiCourseSourceFolder")
 
-
     d = dt.datetime.now()
     cur_month = d.strftime("%B")
+    source = source + cur_month
 
-
-    dist = []
+    data = []
     for child in pathlib.Path(source).iterdir():
-        if child.is_dir() and child == cur_month:
+        if child.is_dir():
             pass
         if child.is_file():
-            dist.append(os.path.split(child)[-1:][0])
-    logger.info(dist)
+            data.append(os.path.split(child)[-1:][0])
+    logger.info(data)
+    kwargs['ti'].xcom_push(key='source_folder', value=data)
 
 
 def read_dist_folder(**kwargs):
-    pass
+    survey = Variable.get('current_survey')
+    destination = Variable.get('data_repository_path')
+    destenation_path = os.path.normpath(destination + '/' + survey + '/Barbaros/battery')
+
+    ddata = []
+    for child in pathlib.Path(destenation_path).iterdir():
+        if child.is_dir():
+            pass
+        if child.is_file():
+            ddata.append(os.path.split(child)[-1:][0])
+    logger.info(ddata)
+    kwargs['ti'].xcom_push(key='dist_folder', value=ddata)
 
 
 def compare_log_files(**kwargs):
-    if True:
+    data = kwargs['ti'].xcom_pull(key='source_folder', task_ids='read_source')
+    ddata = kwargs['ti'].xcom_pull(key='dist_folder', task_ids='read_dist')
+
+    logger.info('DATA: {}'.format(data))
+    logger.info('DDATA: {}'.format(ddata))
+
+    def Diff(data, ddata):
+        return (list(list(set(data) - set(ddata)) + list(set(ddata) - set(data))))
+    
+    to_copy = []
+
+    # if len(data) > 0 and len(ddata) > 0:
+    to_copy = Diff(data, ddata)
+
+    if len(to_copy) > 0:
+        logger.info(to_copy)
+        kwargs['ti'].xcom_push(key='file_to_copy', value=to_copy)
         return 'copy_files'
     else:
         return 'finish'
 
 
 def copy(**kwargs):
-    pass
+    to_copy = kwargs['ti'].xcom_pull(key='file_to_copy', task_ids='get_missing_files')
+
+    source = Variable.get("DigiCourseSourceFolder")
+    d = dt.datetime.now()
+    cur_month = d.strftime("%B")
+    source = source + cur_month
+
+    survey = Variable.get('current_survey')
+    destination = Variable.get('data_repository_path')
+    destenation_path = os.path.normpath(destination + '/' + survey + '/Barbaros/battery')
+
+    for f in to_copy:
+        s = os.path.normpath(source + '/' + f)
+        d = os.path.normpath(destenation_path + '/')
+        s = s.replace(' ', '\ ')
+        d = d.replace(' ', '\ ')
+        os.popen('cp ' + s + ' ' + d)

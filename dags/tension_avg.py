@@ -1,7 +1,7 @@
 from airflow.models import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
-from core.tension import get_raw, get_avg, calc_avg, store_avg, compare
+from core.tension import get_raw, get_avg, calc_avg, compare
 from datetime import datetime
 from airflow.utils.dates import days_ago
 
@@ -40,11 +40,6 @@ calc_avg = PythonOperator(task_id='calc_avg',
                           python_callable=calc_avg,
                           rovide_context=True,
                           dag=dag)
-
-store_data = PythonOperator(task_id='store_data',
-                            python_callable=store_avg,
-                            provide_context=True,
-                            dag=dag)
 
 finish = DummyOperator(task_id='finish',
                        dag=dag)

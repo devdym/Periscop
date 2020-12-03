@@ -46,7 +46,7 @@ get_missing_files = BranchPythonOperator(task_id='get_missing_files',
                                    provide_context=True,
                                    dag=dag)
 
-copy = PythonOperator(task_id='copy_files',
+copy_files = PythonOperator(task_id='copy_files',
                       python_callable=copy,
                       dag=dag)
 
@@ -62,6 +62,6 @@ connect >> [mount, finish]
 mount >> list_source_folder
 list_source_folder >> list_dist_folder
 list_dist_folder >> get_missing_files
-get_missing_files >> [copy, unmount]
-copy >> unmount
+get_missing_files >> [copy_files, unmount]
+copy_files >> unmount
 unmount >> finish

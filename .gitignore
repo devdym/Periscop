@@ -1,3 +1,4 @@
 /.pytest_cache
 /migrations
 /__pycache__
+/periscope/__pycache__

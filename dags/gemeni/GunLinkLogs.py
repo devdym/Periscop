@@ -10,18 +10,16 @@ import paramiko
 logger = logging.getLogger("airflow.task")
 
 def connect_to_server(**kwargs):
-    try:
-        source = Variable.get("GLsource_path")
-        server = Variable.get("GLserver")
-        ftp = ftplib.FTP(server)
-        ftp.login("display", "")
-        ftp.quit()
+    server = Variable.get("GLserver")
+    response = os.system("ping -c 1 " + server)
+
+    if response == 0:
         logger.info('GunLink host is up! - CONTINUE')
-        return 'script'
-    except:
+        return 'mount'
+    else:
         logger.info('GunLink host is down! - STOP')
         return 'finish'
-
+   
 
 def read_source_folder(**kwargs):
     source = Variable.get("GLsource_path")
