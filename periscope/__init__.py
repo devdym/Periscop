@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://usersql:usersql@10.103.1.30/aurora'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://usersql:usersql@localhost/aurora'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 
