@@ -6,7 +6,7 @@
   ],
 "settings": {
     "python.linting.pylintUseMinimalCheckers": false,
-    "python.pythonPath": "C:\\Users\\dimki\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "C:\\Users\\dimki\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.dataScience.jupyterServerURI": "local"
 }
 }
